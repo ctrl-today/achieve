@@ -1,7 +1,8 @@
 const webpack = require('webpack');
 
-module.exports = {
-  entry: './src/index.js',
+module.exports = env => ({
+  entry: ['babel-polyfill', './src/index.js'],
+  mode: (env.dev? 'development':'production'),
   module: {
     rules: [
       {
@@ -10,12 +11,30 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-      	test: /\.scss$/,
-      	use: ['style-loader', 'css-loader', 'sass-loader']
+      	test: /\.sass$/,
+        exclude: /node_modules/,
+      	use: ['style-loader', { 
+          loader: 'css-loader',
+          options: {
+            modules: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            sourceMap: env.dev
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {sourceMap: env.dev}
+        }]
+      },
+      {
+      	test: /\.css$/,
+      	use: ['style-loader', { 
+          loader: 'css-loader',
+        }]
       }
     ],
 
   },
+  devtool: env.dev? 'source-map':undefined,
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
@@ -31,4 +50,4 @@ module.exports = {
     contentBase: './dist',
     hot: true
   }
-};
+});

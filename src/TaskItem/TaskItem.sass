@@ -1,0 +1,31 @@
+@import '../variables.sass'
+
+.TaskListItem
+  display: flex
+  margin: $base-margin
+  padding: $base-pad
+  list-style: none
+  background: $item-color
+  border-left: 3px solid $light-green
+
+  &:hover
+    .itemHoverControls
+      visibility: visible;
+
+.label
+  flex: 1 1 0
+
+.itemHoverControls
+  visibility: hidden
+
+.displayNone
+  display: none
+
+.schedule
+  small
+    padding: 0 4px
+    border-left: solid 1px 
+
+    &:first-child
+      border-left: none
+      padding-left: 0

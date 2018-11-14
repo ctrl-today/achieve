@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server --env.dev",
+    "build": "webpack --env.prod"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.2",
@@ -25,6 +26,10 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "moment": "^2.22.2",
+    "normalize-scss": "^7.0.1",
+    "perfect-scrollbar": "^1.4.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2"
   }

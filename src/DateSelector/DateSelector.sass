@@ -1,0 +1,54 @@
+
+@import '../variables.sass';
+
+.DateSelector
+  border-bottom: solid 3px $item-color
+
+  button
+    padding: 0 $base-pad
+    border: none
+    border-right: solid 1px $item-color
+    background: none
+    cursor: pointer
+
+    &:last-child
+      border-right: none
+
+.months
+  display: flex
+  padding: $base-pad 0
+  white-space: nowrap
+
+  button
+    flex: 1 1 auto
+    transition: background-color .3s
+    &:hover
+      background-color: $lightest-blue
+
+.days
+  width: 100%
+  border-top: solid 1px $item-color
+  white-space: nowrap
+  line-height: 0
+
+  button
+    padding-top: 3px
+    padding-bottom: 3px
+    width: 35px
+
+    transition: background-color .3s
+
+
+    &:hover
+      background-color: $lightest-blue
+
+
+  small
+    display: block
+    font-size: 65%
+
+button.selectedDate
+  background: $light-blue;
+
+button.currentDate
+  background: $light-green;

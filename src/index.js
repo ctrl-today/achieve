@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss'
+import style from './index.sass';
 
-const title = 'ctrl+Accomplish!!!';
+import "../node_modules/perfect-scrollbar/css/perfect-scrollbar.css"
+
+import { App } from './App/App'
 
 ReactDOM.render(
-  <div>{title}</div>,
+  <App />,
   document.getElementById('app')
 );
 
