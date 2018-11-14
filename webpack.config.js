@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => ({
   entry: ['babel-polyfill', './src/index.js'],
@@ -44,7 +45,11 @@ module.exports = env => ({
     filename: 'bundle.js'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+           filename: 'index.html',
+           template: './src/index.html'
+       }),
   ],
   devServer: {
     contentBase: './dist',
