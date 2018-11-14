@@ -34,6 +34,7 @@ export class TaskItem extends React.Component {
   }
   drag = (e) => {
     e.dataTransfer.setData('itemId', this.props.item.id);
+    e.dataTransfer.setData('origin', 'TaskItem');
     e.dropEffect = "move";
   }
 
@@ -45,7 +46,7 @@ export class TaskItem extends React.Component {
       ref="editNameField"
     />
 
-    const schedule = this.props.item.schedule.map(e => (
+    const schedule = this.props.item.schedule.sort((a,b) => a.startTime.valueOf() - b.startTime.valueOf()).map(e => (
       <small key={e.id}>{e.startTime.format('h:mm MMM D')}</small>
     ));
 

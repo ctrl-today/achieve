@@ -89,6 +89,9 @@ var serverMock = (function(){
       for (let key in item)
         if (item.hasOwnProperty(key)) cachedItem[key] = item[key];
 
+      // assign an id to each schedule item
+      cachedItem.schedule.forEach(e => e.id = e.id || Math.ceil(Math.random()*5000));
+
       
       localStorage.setItem('list', JSON.stringify(itemCache));
       return copy(cachedItem);

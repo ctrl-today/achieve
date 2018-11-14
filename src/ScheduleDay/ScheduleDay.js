@@ -2,6 +2,8 @@ import React from 'react';
 
 import style from './ScheduleDay.sass';
 
+import { AgendaItem } from '../AgendaItem/AgendaItem';
+
 import { getDayTimeSlots } from '../Services/TimeConversions';
 import { getToDoList } from '../Services/TaskList.js';
 
@@ -23,10 +25,17 @@ export class ScheduleDay extends React.Component {
 
     let task = this.props.list.find(x => x.id === parseInt(e.dataTransfer.getData('itemId')));
 
-    task.schedule.push({
-      id: Math.random()*50000,
-      startTime: timeSlot.valueOf()
-    });
+    // task Item drop
+    if (e.dataTransfer.getData('origin') === 'TaskItem'){
+      task.schedule.push({
+        startTime: timeSlot
+      });
+    }
+    // agenda Item drop
+    else if (e.dataTransfer.getData('origin') === 'AgendaItem'){
+      let schedule = task.schedule.find(a => a.id === parseInt(e.dataTransfer.getData('scheduleId')));
+      schedule.startTime = timeSlot;
+    }
 
     updateItem(task);
 
@@ -58,13 +67,12 @@ export class ScheduleDay extends React.Component {
     ));
 
     dom.agenda = [].concat(...agenda.map(e => e.schedule.map(x => (
-      <div 
-        key={Math.random()*50000}
-        style={{top:timeSlotOffset(x.startTime, timeSlots)}}
-        className={style.agendaItem}
-      >
-        { e.label } - { x.startTime.format("hh:mm") }
-      </div>
+      <AgendaItem 
+        key={x.id}
+        schedule={x}
+        agenda={e}
+        timeSlots={timeSlots}
+      />
     ))));
 
     return (

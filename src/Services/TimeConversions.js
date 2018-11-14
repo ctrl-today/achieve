@@ -31,3 +31,9 @@ export function getDaysInMonth(month) {
 
   return arrDays;
 }
+
+export function timeSlotOffset(time, slots){
+  let index = slots.findIndex(slot => time.isBefore(slot));
+  if (index === -1) index = slots.length;
+  return (index-1)*50; // TODO: dynamic size ( don't assume 50 px )
+}
