@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "normalize-scss": "^7.0.1",
     "perfect-scrollbar": "^1.4.0",
     "react": "^16.5.2",
